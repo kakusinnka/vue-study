@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>条件渲染 v-if </h1>
+        <div v-if="index === 1">我是盒子index：1</div>
+        <div v-else-if="index === 2">我是盒子index：2</div>
+        <div v-else-if="index === 3">我是盒子index：3</div>
+        <div v-else>我是盒子index：4</div>
+        <hr>
+
+        <h1>条件渲染 v-if 与 template 一起使用</h1>
+        <template v-if="index === 1">
+            <div>我是盒子index：1</div>
+        </template>
+        <hr>
+
+        <h1>条件渲染 v-show </h1>
+        <div v-show="index === 1">我是盒子show：1</div>
+        <div v-show="index === 2">我是盒子show：2</div>
+        <div v-show="index === 3">我是盒子show：3</div>
+        <hr>
+        <div>index：{{index}}</div>
+        <hr>
+        <button @click="index++">点击</button>
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                index: 0
+            }
+        });
+    </script>
+</body>
+
+</html>

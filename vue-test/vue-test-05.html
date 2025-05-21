@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>监视数据变化</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>监视数据变化</h1>
+        <p>今天天气很：{{info}}
+        </p><button @click="changeTianqi">切换天气</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                tianqi: true
+            },
+            computed: {
+                info() {
+                    return this.tianqi ? "好" : "坏"
+                }
+            },
+            methods: {
+                changeTianqi() {
+                    this.tianqi = !this.tianqi;
+                }
+            },
+            watch: {
+                tianqi: {
+                    handler(newV, oldV) {
+                        console.log('天气变化了', newV, oldV);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

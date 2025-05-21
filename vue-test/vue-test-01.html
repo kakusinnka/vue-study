@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据绑定</title>
+    <style>
+        .box {
+            height: 60px;
+            background-color: skyblue;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>插值语法</h1>
+        <h2>{{msg01}}</h2>
+        <hr>
+
+        <h1>数据绑定</h1>
+        <!-- <a v-bind:href="url">百度一下</a> -->
+        <a :href="url">数据绑定</a>
+        <hr>
+
+        <h1>单向数据绑定</h1>
+        <!-- <input type="text" v-bind:value="msg02"> -->
+        <input type="text" :value="msg02">
+        <hr>
+
+        <h1>双向数据绑定</h1>
+        <!-- <input type="text" v-model:value="msg02"> -->
+        <input type="text" v-model="msg02">
+        <hr>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        new Vue({
+            el: '#root',
+            data: {
+                msg01: 'hello vue01',
+                msg02: 'hello vue02',
+                url: 'http://www.baidu.com',
+            }
+        });
+    </script>
+</body>
+
+</html>

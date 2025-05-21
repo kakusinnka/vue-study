@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定，事件修饰符</title>
+    <style>
+        .box {
+            height: 60px;
+            background-color: skyblue;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>事件绑定</h1>
+        <!-- <button v-on:click="showInfo">点我提示信息</button> -->
+        <button @click="showInfo1">调用方法不传参数</button>
+        <button @click="showInfo2($event, 123)">调用方法传参数</button>
+        <hr>
+
+        <h1>事件修饰符</h1>
+        <!-- 阻止默认行为 -->
+        <a href="http://www.baidu.com" @click.prevent="showInfo1">阻止默认行为</a>
+        <hr>
+
+        <!-- 事件只触发一次 -->
+        <button @click.once="showInfo1">事件只触发一次</button>
+        <hr>
+
+        <!-- 阻止冒泡 -->
+        <div class="box" @click="showInfo1">
+            <button @click.stop="showInfo2">阻止冒泡</button>
+        </div>
+        <hr>
+
+        <!-- 事件捕获时调用 -->
+        <div class="box" @click.capture="showInfo1">
+            <button @click="showInfo2">事件捕获时调用</button>
+        </div>
+        <hr>
+
+        <!-- 只有 event.target 是当前操作的元素时，才触发事件 -->
+        <div class="box" @click:self="showInfo1">
+            <button @click="showInfo2">只有 event.target 是当前操作的元素时，才触发事件</button>
+        </div>
+        <hr>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        new Vue({
+            el: '#root',
+            methods: {
+                showInfo1() {
+                    alert('hello world1');
+                },
+                showInfo2(event, a) {
+                    console.log(event, a);
+                    alert('hello world2');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

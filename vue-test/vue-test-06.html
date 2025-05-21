@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定样式</title>
+    <style>
+        .basic {
+            width: 200px;
+            height: 200px;
+            border: 1px black solid;
+        }
+
+        .mood1 {
+            background-color: red;
+        }
+
+        .mood2 {
+            background-color: blue;
+        }
+
+        .mood3 {
+            background-color: green;
+        }
+
+        .box1 {
+            color: blueviolet
+        }
+
+        .box2 {
+            font-size: large;
+        }
+
+        .box3 {
+            font-weight: bold;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!--  -->
+        <div class="basic" :class="moods">我是一个盒子</div>
+        <button @click="changeMood">改变盒子背景颜色</button>
+        <hr>
+
+        <div class="basic" :class="mybox1">我是一个盒子</div>
+        <hr>
+
+        <div class="basic" :class="mybox2">我是一个盒子</div>
+        <hr>
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                moods: 'mood1',
+                mybox1: ['box1', 'box2', 'box3'],
+                mybox2: {
+                    box1: true,
+                    box2: true
+                }
+            },
+            methods: {
+                changeMood() {
+                    const arr = ['mood1', 'mood2', 'mood3'];
+                    const index = Math.floor(Math.random() * 3);
+                    this.moods = arr[index];
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

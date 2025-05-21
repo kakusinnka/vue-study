@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>计算属性</h1>
+        <input type="text" v-model="name">
+        <input type="text" v-model="age">
+        <p>{{person2}}</p>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '张三',
+                age: 18
+            },
+            computed: {
+                person: {
+                    set(person) {
+                        var arr = person.split('-');
+                        this.name = arr[0];
+                        this.age = arr[1];
+                    },
+                    get() {
+                        return this.name + "-" + this.age
+                    }
+                },
+                // 简写形式
+                person2() {
+                    return this.name + "-" + this.age
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

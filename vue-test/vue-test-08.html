@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>列表渲染数组</h1>
+        <ul>
+            <li v-for="(item, index) in arr" :key="index">
+                {{item + index}}
+            </li>
+        </ul>
+        <hr>
+
+        <h1>列表渲染对象</h1>
+        <ul>
+            <li v-for="(value, key) in obj" :key="key">
+                {{key}}:{{value}}
+            </li>
+        </ul>
+        <hr>
+
+        <h1>列表渲染字符串</h1>
+        <ul>
+            <li v-for="(char, index) in str" :key="index">
+                {{char}}{{index}}
+            </li>
+        </ul>
+        <hr>
+
+        <h1>列表渲染固定回数</h1>
+        <ul>
+            <li v-for="(number, index) in 5" :key="index">
+                {{number}}{{index}}
+            </li>
+        </ul>
+        <hr>
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                arr: ['a', 'b', 'c', 'd'],
+                obj: {
+                    name: '张三',
+                    age: 18,
+                    gender: '男'
+                },
+                str: 'hello'
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+    <style>
+        .box {
+            height: 60px;
+            background-color: skyblue;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>键盘事件</h1>
+        <input type="text" @keyup.enter="showInfo1">
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        new Vue({
+            el: '#root',
+            methods: {
+                showInfo1() {
+                    alert('hello world1');
+                },
+                showInfo2(event, a) {
+                    console.log(event, a);
+                    alert('hello world2');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
