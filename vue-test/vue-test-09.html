@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>列表过滤</h1>
+        <label for="key-word">请输入过滤关键字：</label><input id="key-word" type="text" v-model="keyWord">
+        <hr>
+        <button @click="sortType = 1">按年龄升序</button>
+        <button @click="sortType = 2">按年龄降序</button>
+        <hr>
+        <ul>
+            <li v-for="(person, id) in filterPersons" :key="id">
+                {{person.name}}-{{person.age}}
+            </li>
+        </ul>
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    { id: 1, name: '张小三', age: 18 },
+                    { id: 1, name: '张大三', age: 38 },
+                    { id: 2, name: '李小四', age: 19 },
+                    { id: 2, name: '李大四', age: 39 },
+                    { id: 3, name: '王小五', age: 20 },
+                    { id: 3, name: '王大五', age: 40 },
+                    { id: 4, name: '赵  六', age: 21 },
+                    { id: 5, name: '田  七', age: 22 },
+                ],
+                // filterPersons: [],
+                keyWord: '',
+                sortType: 0
+            },
+            computed: {
+                // 过滤后的数组
+                filterPersons() {
+                    const arr = this.persons.filter((person) => {
+                        return person.name.indexOf(this.keyWord) !== -1;
+                    });
+
+                    arr.sort((a, b) => {
+                        if (this.sortType === 1) {
+                            return a.age - b.age;
+                        } else if (this.sortType === 2) {
+                            return b.age - a.age;
+                        } else {
+                            return 0;
+                        }
+                    });
+                    return arr;
+                }
+            },
+            // watch: {
+            //     keyWord: {
+            //         immediate: true,
+            //         handler(value) {
+            //             this.filterPersons = this.persons.filter((person) => {
+            //                 return person.name.indexOf(this.keyWord) !== -1;
+            //             });
+            //         }
+            //     }
+            // }
+        });
+    </script>
+</body>
+
+</html>
