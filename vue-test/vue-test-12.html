@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤器</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>过滤器</h1>
+        <p>{{msg | mySlice}}</p>
+        <p>{{msg | myReverse(1, 3)}}</p>
+        <p>{{msg | mySlice | myReverse(1, 3)}}</p>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                msg: 'hello world'
+            },
+            filters: {
+                mySlice(value) {
+                    return value.slice(0, 4);
+                },
+                myReverse(value, a, b) {
+                    return value.slice(a, b);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
