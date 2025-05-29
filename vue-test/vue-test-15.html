@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 生命周期</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>Vue 生命周期</h1>
+        <span>当前 n 值是：{{n}}</span><br><br>
+        <button @click="add">点我 n+1</button><br><br>
+        <button @click="del">点我销毁</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                n: 1
+            },
+            methods: {
+                add() {
+                    this.n++;
+                },
+                del() {
+                    this.$destroy();
+                }
+            },
+            // 生命周期函数
+            beforeCreate() {
+                console.log('beforeCreate');
+                // console.log(this);
+                // debugger;
+            },
+            created() {
+                console.log('created');
+                // console.log(this);
+                // debugger;
+            },
+            beforeMount() {
+                console.log('beforeMount');
+                // console.log(this);
+                // debugger;
+            },
+            mounted() {
+                console.log('mounted');
+                // console.log(this);
+                // debugger;
+            },
+            beforeUpdate() {
+                console.log('beforeUpdate');
+                // console.log(this);
+                // debugger;
+            },
+            updated() {
+                console.log('updated');
+                console.log(this);
+                debugger;
+            },
+            beforeDestroy() {
+                console.log('beforeDestroy');
+                // console.log(this);
+                // debugger;
+            },
+            destroyed() {
+                console.log('destroyed');
+                // console.log(this);
+                // debugger;
+            }
+        });
+    </script>
+</body>
+
+</html>
