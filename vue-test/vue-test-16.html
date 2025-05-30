@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        const student = {
+            template: `
+                <div>
+                    <h2>学生姓名：{{name}}</h2>
+                    <h2>学生年龄：{{age}}</h2>
+                </div>
+            `,
+            data() {
+                return {
+                    name: '张三',
+                    age: 18
+                }
+            }
+        }
+
+        const school = {
+            template: `
+                <div>
+                    <h2>学校名称：{{name}}</h2>
+                    <h2>学校地址：{{address}}</h2>
+                    <student></student>
+                </div>
+                `,
+            data() {
+                return {
+                    name: '网校',
+                    address: '北京'
+                }
+            },
+            components: {
+                student
+            }
+        }
+
+        const app = {
+            template: `
+                    <div>
+                        <school></school>
+                    </div>
+            `,
+            components: {
+                school
+            }
+        }
+
+        const vm = new Vue({
+            el: '#root',
+            template: `
+                    <div>
+                        <app></app>
+                    </div>
+            `,
+            components: {
+                app
+            }
+        });
+    </script>
+</body>
+
+</html>
